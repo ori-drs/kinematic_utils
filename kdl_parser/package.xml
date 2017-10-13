@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>model_client</name>
+  <name>kdl_parser</name>
   <version>0.0.0</version>
 
   <description>Description</description>
@@ -13,10 +13,9 @@
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roslint</build_depend>
 
+  <depend>orocos_kdl</depend>
   <depend>urdf</depend>
   <depend>urdf_dom</depend>
-  <depend>orocos_kdl</depend>
-  
   <!-- The export tag contains other, unspecified, tags -->
   <export />
 </package>

@@ -6,22 +6,19 @@ if (NOT COMMAND pods_use_pkg_config_packages)
   include(cmake/pods.cmake)
 endif()
 
-project(model_client)
+project(kdl_parser)
 
 find_package(catkin REQUIRED COMPONENTS
+  orocos_kdl
   urdf
   urdf_dom
-  orocos_kdl
 )
 
 catkin_package(
   INCLUDE_DIRS
     include
-  CATKIN_DEPENDS urdf urdf_dom orocos_kdl
-#   pronto_math cv_bridge pronto_lcm bot2_frames_cpp pronto_vis urdf
-# cv_bridge pronto_vis 
-#    pronto_conversions 
-#  DEPENDS system_lib
+  CATKIN_DEPENDS orocos_kdl
+    urdf urdf_dom
 )
 
 ###########
@@ -34,22 +31,18 @@ include_directories(
 )
 
 ######################################################
-set(LIBRARY_NAME model_client)
+set(LIBRARY_NAME kdl-parser)
 
-add_library(${LIBRARY_NAME} src/model_client/model_client.cpp)
+add_library(${LIBRARY_NAME} src/kdl_parser.cpp)
 add_dependencies(${LIBRARY_NAME} ${catkin_EXPORTED_TARGETS} urdf urdf_dom)
-pods_use_pkg_config_packages(${LIBRARY_NAME} occ-map lcmtypes_octomap-utils)
-target_link_libraries(${LIBRARY_NAME} ${OCTOMAP_LIBRARIES} urdf)
+target_link_libraries(${LIBRARY_NAME} urdf orocos-kdl)
+pods_use_pkg_config_packages(${LIBRARY_NAME} eigen3)
 
 
-################
 
-add_executable(robot_model_publisher src/robot_model_publisher.cpp)
-add_dependencies(robot_model_publisher ${catkin_EXPORTED_TARGETS} urdf urdf_dom)
-pods_use_pkg_config_packages(robot_model_publisher lcm)
-target_link_libraries(robot_model_publisher model_client urdf urdf_dom
-  lcmtypes_bot2-core)
-
+add_executable(check_kdl_parser src/check_kdl_parser.cpp)
+add_dependencies(check_kdl_parser ${catkin_EXPORTED_TARGETS} kdl-parser)
+target_link_libraries(check_kdl_parser urdf orocos-kdl kdl-parser)
 
 
 #############

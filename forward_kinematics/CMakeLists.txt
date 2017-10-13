@@ -6,18 +6,25 @@ if (NOT COMMAND pods_use_pkg_config_packages)
   include(cmake/pods.cmake)
 endif()
 
-project(model_client)
+project(forward_kinematics)
 
 find_package(catkin REQUIRED COMPONENTS
-  urdf
-  urdf_dom
-  orocos_kdl
+   orocos_kdl
+#  pronto_math
+#  pronto_vis
+#  pronto_lcm
+#  pronto_conversions
+#  cv_bridge
+#  bot2_frames_cpp
+#  urdf
+#  urdf_dom
 )
 
 catkin_package(
   INCLUDE_DIRS
     include
-  CATKIN_DEPENDS urdf urdf_dom orocos_kdl
+  CATKIN_DEPENDS orocos_kdl
+#    urdf urdf_dom
 #   pronto_math cv_bridge pronto_lcm bot2_frames_cpp pronto_vis urdf
 # cv_bridge pronto_vis 
 #    pronto_conversions 
@@ -34,21 +41,11 @@ include_directories(
 )
 
 ######################################################
-set(LIBRARY_NAME model_client)
+set(LIBRARY_NAME forward-kinematics)
 
-add_library(${LIBRARY_NAME} src/model_client/model_client.cpp)
+add_library(${LIBRARY_NAME} src/treefksolverposfull_recursive.cpp)
 add_dependencies(${LIBRARY_NAME} ${catkin_EXPORTED_TARGETS} urdf urdf_dom)
-pods_use_pkg_config_packages(${LIBRARY_NAME} occ-map lcmtypes_octomap-utils)
-target_link_libraries(${LIBRARY_NAME} ${OCTOMAP_LIBRARIES} urdf)
-
-
-################
-
-add_executable(robot_model_publisher src/robot_model_publisher.cpp)
-add_dependencies(robot_model_publisher ${catkin_EXPORTED_TARGETS} urdf urdf_dom)
-pods_use_pkg_config_packages(robot_model_publisher lcm)
-target_link_libraries(robot_model_publisher model_client urdf urdf_dom
-  lcmtypes_bot2-core)
+pods_use_pkg_config_packages(${LIBRARY_NAME} eigen3)
 
 
 

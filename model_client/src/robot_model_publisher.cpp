@@ -11,7 +11,7 @@
 #include <lcm/lcm-cpp.hpp>
 #include "lcmtypes/bot_core/robot_urdf_t.hpp"
 
-#include <model-client/model-client.hpp>
+#include <model_client/model_client.hpp>
 
 
 using namespace std;
