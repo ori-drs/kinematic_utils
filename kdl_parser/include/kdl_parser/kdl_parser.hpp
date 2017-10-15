@@ -39,7 +39,7 @@
 
 #include <orocos_kdl/tree.hpp>
 #include <string>
-#include <urdf/model.h>
+#include <urdf/model.hpp>
 
 
 namespace kdl_parser{

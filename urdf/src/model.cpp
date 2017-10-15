@@ -37,7 +37,7 @@
 #include <boost/algorithm/string.hpp>
 //#include <ros/ros.h>
 #include <vector>
-#include "urdf/model.h"
+#include "urdf/model.hpp"
 #include <fstream>
 #include <iostream>
 

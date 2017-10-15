@@ -8,8 +8,8 @@ endif()
 
 project(urdf_dom)
 
-#find_package(catkin REQUIRED COMPONENTS
-#)
+find_package(catkin REQUIRED COMPONENTS
+)
 
 catkin_package(
   INCLUDE_DIRS
@@ -32,7 +32,8 @@ include_directories(
 
 ######################################################
 add_library(${PROJECT_NAME} src/urdf_parser/link.cpp src/urdf_parser/joint.cpp src/urdf_parser/urdf_parser.cpp)
-#add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS})
+add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS})
+
 #pods_use_pkg_config_packages(${LIBRARY_NAME} bot2-param-client libfovis)
 
 

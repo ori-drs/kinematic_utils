@@ -8,20 +8,13 @@ endif()
 
 project(orocos_kdl)
 
-#find_package(catkin REQUIRED COMPONENTS
-#  pronto_math
-#  pronto_vis
-#  pronto_lcm
-#  pronto_conversions
-#  cv_bridge
-#  bot2_frames_cpp
-#  urdf
-#  urdf_dom
-#)
+find_package(catkin REQUIRED COMPONENTS
+)
 
 catkin_package(
   INCLUDE_DIRS
     include
+#  LIBRARIES orocos-kdl
 #  CATKIN_DEPENDS urdf urdf_dom
 #   pronto_math cv_bridge pronto_lcm bot2_frames_cpp pronto_vis urdf
 # cv_bridge pronto_vis 

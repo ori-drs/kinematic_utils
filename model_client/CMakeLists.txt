@@ -1,26 +1,20 @@
 cmake_minimum_required(VERSION 2.8.3)
-# needed for string arrays
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -Wno-deprecated-declarations")
+project(model_client)
 
 if (NOT COMMAND pods_use_pkg_config_packages)
   include(cmake/pods.cmake)
 endif()
 
-project(model_client)
-
 find_package(catkin REQUIRED COMPONENTS
+  orocos_kdl
   urdf
   urdf_dom
-  orocos_kdl
 )
 
 catkin_package(
-  INCLUDE_DIRS
-    include
-  CATKIN_DEPENDS urdf urdf_dom orocos_kdl
-#   pronto_math cv_bridge pronto_lcm bot2_frames_cpp pronto_vis urdf
-# cv_bridge pronto_vis 
-#    pronto_conversions 
+  INCLUDE_DIRS include
+  LIBRARIES model_client urdf urdf_dom
+  CATKIN_DEPENDS orocos_kdl urdf urdf_dom
 #  DEPENDS system_lib
 )
 
@@ -33,36 +27,17 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-######################################################
-set(LIBRARY_NAME model_client)
-
-add_library(${LIBRARY_NAME} src/model_client/model_client.cpp)
-add_dependencies(${LIBRARY_NAME} ${catkin_EXPORTED_TARGETS} urdf urdf_dom)
-pods_use_pkg_config_packages(${LIBRARY_NAME} occ-map lcmtypes_octomap-utils)
-target_link_libraries(${LIBRARY_NAME} ${OCTOMAP_LIBRARIES} urdf)
-
-
-################
-
-add_executable(robot_model_publisher src/robot_model_publisher.cpp)
-add_dependencies(robot_model_publisher ${catkin_EXPORTED_TARGETS} urdf urdf_dom)
-pods_use_pkg_config_packages(robot_model_publisher lcm)
-target_link_libraries(robot_model_publisher model_client urdf urdf_dom
-  lcmtypes_bot2-core)
-
-
-
-#############
-## Install ##
-#############
-
-install(TARGETS ${TARGETS}
-  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+## Declare a C++ library
+add_library(${PROJECT_NAME}
+  src/${PROJECT_NAME}/model_client.cpp
 )
 
+add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
+pods_use_pkg_config_packages(${PROJECT_NAME} lcmtypes_bot2-core)
 
-# Mark cpp header files for installation
-install(DIRECTORY include/${PROJECT_NAME}/
-  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
+add_executable(robot_model_publisher src/robot_model_publisher.cpp)
+add_dependencies(robot_model_publisher ${catkin_EXPORTED_TARGETS})
+target_link_libraries(robot_model_publisher model_client )
+
+
