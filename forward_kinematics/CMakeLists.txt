@@ -6,9 +6,9 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES forward_kinematics
-#  CATKIN_DEPENDS orocos_kdl  urdf urdf_dom
+  INCLUDE_DIRS include
+  LIBRARIES forward_kinematics
+  CATKIN_DEPENDS orocos_kdl  urdf urdf_dom
 #  DEPENDS system_lib
 )
 
@@ -25,3 +25,4 @@ include_directories(
 add_library(${PROJECT_NAME}
    src/treefksolverposfull_recursive.cpp
 )
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})

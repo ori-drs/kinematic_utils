@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   INCLUDE_DIRS
     include
+  LIBRARIES urdf_dom
 #  CATKIN_DEPENDS pronto_math cv_bridge pronto_lcm bot2_frames_cpp 
 #    pronto_vis urdf model_client
 #    pronto_conversions 

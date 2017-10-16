@@ -14,7 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   INCLUDE_DIRS
     include
-#  LIBRARIES orocos-kdl
+  LIBRARIES orocos-kdl
 #  CATKIN_DEPENDS urdf urdf_dom
 #   pronto_math cv_bridge pronto_lcm bot2_frames_cpp pronto_vis urdf
 # cv_bridge pronto_vis 

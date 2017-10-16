@@ -7,7 +7,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 catkin_package(
   INCLUDE_DIRS include
-  LIBRARIES urdf urdf_dom
+  LIBRARIES urdf
   CATKIN_DEPENDS urdf_dom
 #  DEPENDS system_lib
 )

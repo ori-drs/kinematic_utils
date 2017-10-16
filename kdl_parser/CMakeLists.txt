@@ -33,14 +33,7 @@ set(LIBRARY_NAME kdl-parser)
 
 add_library(${LIBRARY_NAME} src/kdl_parser.cpp)
 pods_use_pkg_config_packages(${LIBRARY_NAME} eigen3)
+target_link_libraries(kdl-parser ${catkin_LIBRARIES})
 
-
-#add_executable(check_kdl_parser src/check_kdl_parser.cpp)
-#add_dependencies(check_kdl_parser ${catkin_EXPORTED_TARGETS})
-#target_link_libraries(check_kdl_parser ${catkin_LIBRARIES} kdl-parser)
-
-
-#############
-## Install ##
-#############
-
+add_executable(check_kdl_parser src/check_kdl_parser.cpp)
+target_link_libraries(check_kdl_parser ${catkin_LIBRARIES} kdl-parser)
