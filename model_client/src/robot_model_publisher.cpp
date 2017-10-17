@@ -7,7 +7,7 @@
 #include <sys/time.h>
 #include <time.h>
 
-#include "urdf/model.hpp"
+#include "urdf/model.h"
 #include <lcm/lcm-cpp.hpp>
 #include "lcmtypes/bot_core/robot_urdf_t.hpp"
 

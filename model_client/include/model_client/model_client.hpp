@@ -5,7 +5,7 @@
 #include <map>
 #include <boost/shared_ptr.hpp>
 
-#include "urdf/model.hpp"
+#include "urdf/model.h"
 #include <lcm/lcm.h>
 #include <lcm/lcm-cpp.hpp>
 #include "lcmtypes/bot_core_robot_urdf_t.h"

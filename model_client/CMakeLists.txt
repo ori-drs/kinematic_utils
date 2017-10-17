@@ -6,15 +6,13 @@ if (NOT COMMAND pods_use_pkg_config_packages)
 endif()
 
 find_package(catkin REQUIRED COMPONENTS
-  orocos_kdl
   urdf
-  urdf_dom
 )
 
 catkin_package(
   INCLUDE_DIRS include
-  LIBRARIES model_client urdf urdf_dom
-  CATKIN_DEPENDS orocos_kdl urdf urdf_dom
+  LIBRARIES model_client
+  CATKIN_DEPENDS urdf
 #  DEPENDS system_lib
 )
 

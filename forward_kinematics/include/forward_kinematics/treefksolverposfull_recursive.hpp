@@ -23,8 +23,7 @@
 #ifndef KDLTREEFKSOLVERPOSFULL_RECURSIVE_HPP
 #define KDLTREEFKSOLVERPOSFULL_RECURSIVE_HPP
 
-#include <orocos_kdl/tree.hpp>
-//#include "lcmtypes/drc/transform_t.hpp"
+#include <kdl/tree.hpp>
 
 namespace KDL {
 

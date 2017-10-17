@@ -2,13 +2,13 @@ cmake_minimum_required(VERSION 2.8.3)
 project(forward_kinematics)
 
 find_package(catkin REQUIRED COMPONENTS
-  orocos_kdl urdf urdf_dom
+  urdf
 )
 
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES forward_kinematics
-  CATKIN_DEPENDS orocos_kdl  urdf urdf_dom
+  CATKIN_DEPENDS   urdf
 #  DEPENDS system_lib
 )
 
