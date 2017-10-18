@@ -39,3 +39,6 @@ add_dependencies(robot_model_publisher ${catkin_EXPORTED_TARGETS})
 target_link_libraries(robot_model_publisher model_client )
 
 
+add_executable(urdf_to_graphiz src/urdf_to_graphiz.cpp)
+add_dependencies(urdf_to_graphiz ${catkin_EXPORTED_TARGETS})
+target_link_libraries(urdf_to_graphiz model_client )
