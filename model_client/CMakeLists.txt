@@ -1,12 +1,8 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(model_client)
 
-if (NOT COMMAND pods_use_pkg_config_packages)
-  include(cmake/pods.cmake)
-endif()
-
 find_package(catkin REQUIRED COMPONENTS
-  urdf
+  urdf bot_core_lcmtypes
 )
 
 catkin_package(
@@ -32,7 +28,6 @@ add_library(${PROJECT_NAME}
 
 add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
-pods_use_pkg_config_packages(${PROJECT_NAME} lcmtypes_bot2-core)
 
 add_executable(robot_model_publisher src/robot_model_publisher.cpp)
 add_dependencies(robot_model_publisher ${catkin_EXPORTED_TARGETS})
